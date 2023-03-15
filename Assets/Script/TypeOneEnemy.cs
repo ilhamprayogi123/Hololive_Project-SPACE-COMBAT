@@ -46,8 +46,11 @@ public class TypeOneEnemy : MonoBehaviour
         BulletManager bullet = collision.GetComponent<BulletManager>();
         if (bullet != null)
         {
-            Destroy(gameObject);
-            Destroy(bullet.gameObject);
+            if (!bullet.isEnemy)
+            {
+                Destroy(gameObject);
+                Destroy(bullet.gameObject);
+            }
         }
     }
 }

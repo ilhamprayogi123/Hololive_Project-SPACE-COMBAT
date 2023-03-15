@@ -97,4 +97,24 @@ public class ShipManager : MonoBehaviour
 
         transform.position = pos;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        BulletManager bullet = collision.GetComponent<BulletManager>();
+        if (bullet != null)
+        {
+            if (bullet.isEnemy)
+            {
+                Destroy(gameObject);
+                Destroy(bullet.gameObject);
+            }
+        }
+
+        TypeOneEnemy enemy = collision.GetComponent<TypeOneEnemy>();
+        if (enemy != null)
+        {
+            Destroy(gameObject);
+            Destroy(enemy.gameObject);
+        }
+    }
 }
